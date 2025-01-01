@@ -3,13 +3,15 @@ using TMPro;
 
 public class ScoreManager : MonoBehaviour
 {
-    public static ScoreManager instance;   // Instance dari ScoreManager
-    public TextMeshProUGUI trashText;      // Referensi ke TextMeshPro untuk UI
-    private int trashCount = 0;             // Jumlah sampah yang terkumpul
+    public static ScoreManager instance;
+    public TextMeshProUGUI trashText;   // UI untuk sampah di kapal
+    public TextMeshProUGUI storageText; // UI untuk storage sampah
+
+    public int maxStorageCapacity = 100; // Kapasitas maksimum storage
+    private int currentStorage = 0;      // Jumlah sampah di storage
 
     private void Awake()
     {
-        // Pastikan hanya ada satu instance dari ScoreManager
         if (instance == null)
         {
             instance = this;
@@ -20,16 +22,19 @@ public class ScoreManager : MonoBehaviour
         }
     }
 
-    // Fungsi untuk menambahkan sampah ke skor
-    public void AddTrash(int amount)
+    public void UpdateTrashUI(int currentTrash, int maxTrashCapacity)
     {
-        trashCount += amount;
-        UpdateTrashUI();
+        trashText.text = "Sampah: " + currentTrash + "/" + maxTrashCapacity;
     }
 
-    // Update UI dengan jumlah sampah yang terkumpul
-    private void UpdateTrashUI()
+    public void AddToStorage(int amount)
     {
-        trashText.text = "Sampah: " + trashCount.ToString(); // Menampilkan jumlah sampah
+        currentStorage = Mathf.Clamp(currentStorage + amount, 0, maxStorageCapacity);
+        UpdateStorageUI();
+    }
+
+    private void UpdateStorageUI()
+    {
+        storageText.text = "Storage: " + currentStorage + "/" + maxStorageCapacity;
     }
 }
