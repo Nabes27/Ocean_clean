@@ -1,11 +1,13 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI; // Tambahkan namespace untuk UI Image
 
 public class ScoreManager : MonoBehaviour
 {
     public static ScoreManager instance;
     public TextMeshProUGUI trashText;   // UI untuk sampah di kapal
     public TextMeshProUGUI storageText; // UI untuk storage sampah
+    public Image storageBar;            // UI bar untuk storage sampah
 
     public int maxStorageCapacity = 100; // Kapasitas maksimum storage
     private int currentStorage = 0;      // Jumlah sampah di storage
@@ -35,6 +37,13 @@ public class ScoreManager : MonoBehaviour
 
     private void UpdateStorageUI()
     {
+        // Perbarui teks storage
         storageText.text = "Storage: " + currentStorage + "/" + maxStorageCapacity;
+
+        // Perbarui fill amount pada bar
+        if (storageBar != null)
+        {
+            storageBar.fillAmount = (float)currentStorage / maxStorageCapacity;
+        }
     }
 }

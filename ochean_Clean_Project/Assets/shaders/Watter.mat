@@ -123,8 +123,8 @@ Material:
     - _SrcBlendAlpha: 1
     - _Surface: 0
     - _WaveFrequency: 0.01
-    - _WaveHight: 0.00029999999
-    - _WaveSpeed: 0.008
+    - _WaveHight: 0.0002
+    - _WaveSpeed: 0.018
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:

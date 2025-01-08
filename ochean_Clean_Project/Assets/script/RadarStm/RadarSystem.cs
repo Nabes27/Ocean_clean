@@ -14,6 +14,7 @@ public class RadarSystem : MonoBehaviour
     public float fadeDuration = 1f;          // Durasi untuk memudarkan ikon radar
 
     private Dictionary<GameObject, GameObject> radarIcons = new Dictionary<GameObject, GameObject>(); // Map objek ke ikon
+    private List<GameObject> fadingIcons = new List<GameObject>(); // Ikon yang sedang memudar
 
     private void Start()
     {
@@ -32,8 +33,16 @@ public class RadarSystem : MonoBehaviour
 
     private void ScanRadar()
     {
-        // Simpan ikon lama untuk diproses (fade-out)
-        List<GameObject> previousIcons = new List<GameObject>(radarIcons.Keys);
+        // Tandai semua ikon lama untuk diproses (fade-out)
+        foreach (var icon in radarIcons.Values)
+        {
+            if (!fadingIcons.Contains(icon))
+            {
+                fadingIcons.Add(icon);
+                StartCoroutine(FadeOutAndDestroy(icon));
+            }
+        }
+        radarIcons.Clear(); // Kosongkan map ikon untuk data baru
 
         // Gunakan OverlapSphere untuk mendeteksi semua objek dalam radius
         Collider[] hits = Physics.OverlapSphere(playerTransform.position, radarRadius);
@@ -52,30 +61,10 @@ public class RadarSystem : MonoBehaviour
 
                 Vector2 radarPosition = new Vector2(offset.x, offset.z) / radarRadius * radarContainer.rect.width / 2;
 
-                // Jika ikon sudah ada, perbarui posisinya
-                if (radarIcons.ContainsKey(target))
-                {
-                    radarIcons[target].GetComponent<RectTransform>().anchoredPosition = radarPosition;
-                    previousIcons.Remove(target); // Ikon tetap di radar
-                }
-                else
-                {
-                    // Buat ikon baru
-                    GameObject icon = Instantiate(radarIconPrefab, radarContainer);
-                    icon.GetComponent<RectTransform>().anchoredPosition = radarPosition;
-                    radarIcons[target] = icon;
-                }
-            }
-        }
-
-        // Proses ikon yang tidak lagi terdeteksi
-        foreach (GameObject lostTarget in previousIcons)
-        {
-            if (radarIcons.ContainsKey(lostTarget))
-            {
-                GameObject icon = radarIcons[lostTarget];
-                radarIcons.Remove(lostTarget);
-                StartCoroutine(FadeOutAndDestroy(icon));
+                // Buat ikon baru untuk objek yang terdeteksi
+                GameObject icon = Instantiate(radarIconPrefab, radarContainer);
+                icon.GetComponent<RectTransform>().anchoredPosition = radarPosition;
+                radarIcons[target] = icon;
             }
         }
     }
@@ -94,14 +83,20 @@ public class RadarSystem : MonoBehaviour
             yield return null;
         }
 
+        fadingIcons.Remove(icon);
         Destroy(icon);
+    }
+
+    private void LateUpdate()
+    {
+        UpdateRadarRotation();
     }
 
     private void UpdateRadarRotation()
     {
         if (cameraTransform != null)
         {
-            // Sesuaikan rotasi radar dengan rotasi horizontal kamera
+            // Rotasi radar mengikuti kamera orbital
             radarContainer.localRotation = Quaternion.Euler(0, 0, cameraTransform.eulerAngles.y);
         }
     }
