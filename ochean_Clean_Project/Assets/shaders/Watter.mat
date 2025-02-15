@@ -108,7 +108,7 @@ Material:
     - _Glossiness: 0
     - _GlossyReflections: 0
     - _Metallic: 0
-    - _NormalMapTiling: 0.06
+    - _NormalMapTiling: 0.08
     - _NormalStrenght: 0.4
     - _OcclusionStrength: 1
     - _Parallax: 0.005
@@ -117,14 +117,14 @@ Material:
     - _ReceiveShadows: 1
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
-    - _Somthnes: 0.6
+    - _Somthnes: 0.79
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
     - _Surface: 0
-    - _WaveFrequency: 0.01
-    - _WaveHight: 0.0002
-    - _WaveSpeed: 0.018
+    - _WaveFrequency: 0.0044
+    - _WaveHight: 0.0055
+    - _WaveSpeed: 0.023599999
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
