@@ -4,21 +4,20 @@ using UnityEngine;
 public class AI_Spawner : MonoBehaviour
 {
     [Header("AI Spawn Settings")]
-    [SerializeField] private GameObject aiCarPrefab; // Prefab AI Car
-    [SerializeField] private float spawnRadius = 10f; // Radius random spawn
-    [SerializeField] private float minSpawnRotation = 0f; // Minimum rotasi spawn (derajat)
-    [SerializeField] private float maxSpawnRotation = 360f; // Maksimum rotasi spawn (derajat)
+    [SerializeField] private GameObject[] aiCarPrefabs; // List AI Car Prefabs
+    [SerializeField] private float spawnRadius = 10f; // Radius spawn
+    [SerializeField] private float spawnRotationY = 0f; // Satu nilai rotasi tetap (derajat)
 
     [Header("Spawn Timing")]
-    public float minSpawnTime = 3f; // Minimum waktu antar spawn (bisa diubah di Inspector)
-    public float maxSpawnTime = 5f; // Maksimum waktu antar spawn (bisa diubah di Inspector)
+    public float minSpawnTime = 3f;
+    public float maxSpawnTime = 5f;
 
     [Header("Spawn Distance")]
-    public float startSpawnDistance = 50f; // Jarak mulai spawn (bisa diubah di Inspector)
-    public float stopSpawnDistance = 40f; // Jarak berhenti spawn (bisa diubah di Inspector)
+    public float startSpawnDistance = 50f;
+    public float stopSpawnDistance = 40f;
 
     [Header("Player Reference")]
-    public Transform player; // Objek player (bisa di-set di Inspector)
+    public Transform player;
 
     private bool canSpawn = false;
 
@@ -49,7 +48,7 @@ public class AI_Spawner : MonoBehaviour
                 }
             }
 
-            yield return new WaitForSeconds(1f); // Cek jarak setiap 1 detik
+            yield return new WaitForSeconds(1f);
         }
     }
 
@@ -58,8 +57,13 @@ public class AI_Spawner : MonoBehaviour
         while (canSpawn)
         {
             Vector3 spawnPosition = GetRandomSpawnPosition();
-            Quaternion spawnRotation = GetRandomSpawnRotation();
-            Instantiate(aiCarPrefab, spawnPosition, spawnRotation);
+            Quaternion spawnRotation = Quaternion.Euler(0, spawnRotationY, 0);
+
+            if (aiCarPrefabs.Length > 0) 
+            {
+                int randomIndex = Random.Range(0, aiCarPrefabs.Length);
+                Instantiate(aiCarPrefabs[randomIndex], spawnPosition, spawnRotation);
+            }
 
             float spawnDelay = Random.Range(minSpawnTime, maxSpawnTime);
             yield return new WaitForSeconds(spawnDelay);
@@ -69,13 +73,17 @@ public class AI_Spawner : MonoBehaviour
     private Vector3 GetRandomSpawnPosition()
     {
         Vector2 randomCircle = Random.insideUnitCircle * spawnRadius;
-        Vector3 spawnPosition = new Vector3(randomCircle.x, 0, randomCircle.y) + transform.position;
-        return spawnPosition;
+        return new Vector3(randomCircle.x, 0, randomCircle.y) + transform.position;
     }
 
-    private Quaternion GetRandomSpawnRotation()
+    // Menampilkan garis hijau hanya di Scene View
+    private void OnDrawGizmos()
     {
-        float randomRotationY = Random.Range(minSpawnRotation, maxSpawnRotation);
-        return Quaternion.Euler(0, randomRotationY, 0);
+        if (!Application.isPlaying) // Garis hijau hanya muncul di Scene View
+        {
+            Gizmos.color = Color.green;
+            Vector3 direction = Quaternion.Euler(0, spawnRotationY, 0) * Vector3.forward;
+            Gizmos.DrawLine(transform.position, transform.position + direction * 5f);
+        }
     }
 }
