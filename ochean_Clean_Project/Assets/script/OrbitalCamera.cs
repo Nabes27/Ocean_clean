@@ -16,13 +16,31 @@ public class OrbitalCamera : MonoBehaviour
 
     private bool isOrbitalActive = false; // Apakah mode orbital aktif
 
+    //
+    public void SetOrbitalActive(bool value)
+    {
+        isOrbitalActive = value;
+    }
+
+    private bool IsMapOpen()
+    {
+        FullMapController mapController = FindObjectOfType<FullMapController>();
+        if (mapController != null)
+        {
+            return mapController.IsMapActive(); // Panggil fungsi baru dari FullMapController
+        }
+        return false;
+    }
+
+
     void Update()
     {
         // Klik kanan mouse untuk toggle mode orbital
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(1) && !IsMapOpen())
         {
             isOrbitalActive = !isOrbitalActive; // Toggle mode orbital
         }
+
 
         // Jika mode orbital aktif, aktifkan rotasi kamera
         if (isOrbitalActive)
@@ -30,11 +48,11 @@ public class OrbitalCamera : MonoBehaviour
             currentX += Input.GetAxis("Mouse X") * rotationSpeed;
             currentY -= Input.GetAxis("Mouse Y") * rotationSpeed;
             currentY = Mathf.Clamp(currentY, yMinLimit, yMaxLimit);
+            distance -= Input.GetAxis("Mouse ScrollWheel") * scrollSpeed;
+            distance = Mathf.Clamp(distance, minDistance, maxDistance);
         }
 
-        // Zoom kamera dengan scroll wheel
-        distance -= Input.GetAxis("Mouse ScrollWheel") * scrollSpeed;
-        distance = Mathf.Clamp(distance, minDistance, maxDistance);
+       
     }
 
     void LateUpdate()

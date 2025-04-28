@@ -1,0 +1,149 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3248301776225698050
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1564741655825219993}
+  m_Layer: 0
+  m_Name: AI spawnR_L
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1564741655825219993
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3248301776225698050}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0.7071068, z: -0, w: -0.7071068}
+  m_LocalPosition: {x: -37.27, y: 0.3, z: -221.85}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 3826304579600758861}
+  - {fileID: 3734427776832951252}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 270, z: 0}
+--- !u!1 &4652360149944964967
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3734427776832951252}
+  - component: {fileID: 3542532264002170686}
+  m_Layer: 0
+  m_Name: ai spwn Rr
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3734427776832951252
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4652360149944964967}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.31, y: 0, z: -0.53999084}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1564741655825219993}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3542532264002170686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4652360149944964967}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94809c41d219059418266f4c37a67b5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  aiCarPrefabs:
+  - {fileID: 719509898388470055, guid: c65155dede6eb5a49b8cce55001feeb6, type: 3}
+  - {fileID: 79361507274701591, guid: 992a912c153f3784c8070607eb38990a, type: 3}
+  - {fileID: 7316938233040203269, guid: 8e650480f7e0ba549b8fa166c3ebd7f3, type: 3}
+  - {fileID: 5346565264302149402, guid: dbea97de9472b7b4b9453d8c4d2a6653, type: 3}
+  - {fileID: 4086243094980511861, guid: aa8ae0e2dd7e01a4a8c44d2a89de0bcc, type: 3}
+  spawnRadius: 0
+  spawnRotationY: -92.44
+  minSpawnTime: 3
+  maxSpawnTime: 5
+  startSpawnDistance: 90
+  stopSpawnDistance: 80
+  player: {fileID: 0}
+--- !u!1 &8063979417097089632
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3826304579600758861}
+  - component: {fileID: 3663455099150114824}
+  m_Layer: 0
+  m_Name: ai spwn L
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3826304579600758861
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8063979417097089632}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.31, y: 0, z: -0.53999084}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1564741655825219993}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3663455099150114824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8063979417097089632}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94809c41d219059418266f4c37a67b5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  aiCarPrefabs:
+  - {fileID: 719509898388470055, guid: b7190c9b5f309d945b51ca160c8e38f8, type: 3}
+  - {fileID: 79361507274701591, guid: 8e1641167d4fc6e49a532c48b54e96a5, type: 3}
+  - {fileID: 7316938233040203269, guid: 30ff894aaca6775429c7df85169cd9d8, type: 3}
+  - {fileID: 5346565264302149402, guid: aee926fd71bf0a741b0c738a7ca7b8ed, type: 3}
+  - {fileID: 7246837692391851996, guid: 645e012c38df8ec4ea61e062dc032b4e, type: 3}
+  spawnRadius: 0
+  spawnRotationY: 88.2
+  minSpawnTime: 4
+  maxSpawnTime: 8
+  startSpawnDistance: 90
+  stopSpawnDistance: 80
+  player: {fileID: 0}

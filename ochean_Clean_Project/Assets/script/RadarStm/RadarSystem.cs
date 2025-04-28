@@ -16,11 +16,52 @@ public class RadarSystem : MonoBehaviour
     private Dictionary<GameObject, GameObject> radarIcons = new Dictionary<GameObject, GameObject>(); // Map objek ke ikon
     private List<GameObject> fadingIcons = new List<GameObject>(); // Ikon yang sedang memudar
 
+    // Daftar GameObject yang akan menyala bergantian sebagai "lampu"
+    public List<GameObject> blinkingObjects;
+    public float blinkDuration = 0.5f; // Waktu menyala sebelum mati lagi
+
+    private int currentBlinkIndex = 0;
+
     private void Start()
     {
-        // Mulai coroutine untuk pemindaian radar
         StartCoroutine(ScanRadarRoutine());
+        StartCoroutine(BlinkRoutine()); // Mulai blinking
     }
+
+    
+    private IEnumerator BlinkRoutine()
+    {
+        while (true)
+        {
+            if (blinkingObjects.Count > 0)
+            {
+                // Matikan semua objek dulu
+                foreach (var obj in blinkingObjects)
+                {
+                    if (obj != null)
+                        obj.SetActive(false);
+                }
+
+                // Nyalakan satu objek sesuai giliran
+                GameObject current = blinkingObjects[currentBlinkIndex];
+                if (current != null)
+                    current.SetActive(true);
+
+                // Tunggu beberapa detik
+                yield return new WaitForSeconds(blinkDuration);
+
+                // Matikan lagi
+                if (current != null)
+                    current.SetActive(false);
+
+                // Lanjut ke objek berikutnya (looping)
+                currentBlinkIndex = (currentBlinkIndex + 1) % blinkingObjects.Count;
+            }
+
+            yield return new WaitForSeconds(scanInterval);
+        }
+    }
+
 
     private IEnumerator ScanRadarRoutine()
     {
