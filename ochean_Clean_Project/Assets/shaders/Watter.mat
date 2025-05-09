@@ -109,7 +109,7 @@ Material:
     - _GlossyReflections: 0
     - _Metallic: 0
     - _NormalMapTiling: 0.08
-    - _NormalStrenght: 0.4
+    - _NormalStrenght: 0.799
     - _OcclusionStrength: 1
     - _Parallax: 0.005
     - _QueueControl: 0

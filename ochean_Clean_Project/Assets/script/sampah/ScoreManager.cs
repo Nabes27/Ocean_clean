@@ -8,6 +8,8 @@ public class ScoreManager : MonoBehaviour
     public TextMeshProUGUI trashText;   // UI untuk sampah di kapal
     public TextMeshProUGUI storageText; // UI untuk storage sampah
     public Image storageBar;            // UI bar untuk storage sampah
+    public Image DekKapal;
+
 
     public int maxStorageCapacity = 100; // Kapasitas maksimum storage
     private int currentStorage = 0;      // Jumlah sampah di storage
@@ -27,6 +29,11 @@ public class ScoreManager : MonoBehaviour
     public void UpdateTrashUI(int currentTrash, int maxTrashCapacity)
     {
         trashText.text = "Sampah: " + currentTrash + "/" + maxTrashCapacity;
+        if (DekKapal != null)
+        {
+            DekKapal.fillAmount = (float)currentTrash / maxTrashCapacity;
+        }
+
     }
 
     public void AddToStorage(int amount)

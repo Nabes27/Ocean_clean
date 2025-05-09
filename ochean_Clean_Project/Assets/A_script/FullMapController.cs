@@ -39,6 +39,20 @@ public class FullMapController : MonoBehaviour
     public Volume postProcessingVolume;  // Drag volume dari inspector sini
     private DepthOfField dof;             // Cache komponen Depth of Field
 
+    [Header("Map Blur Overlay")]
+    public Image blurOverlayImage; // GameObject Image (UI) yang ingin diblur alpha-nya
+    [Range(0, 255)]
+    public byte blurAlphaOnMap = 114; // Alpha ketika map aktif
+
+    [Range(0f, 5f)]
+    public float blurFadeDuration = 0.5f; // Durasi transisi fade (dalam detik)
+
+    private float currentBlurAlpha = 0f;       // Alpha saat ini (0–1)
+    private float targetBlurAlpha = 0f;        // Alpha tujuan
+    private float blurFadeTimer = 0f;          // Timer untuk transisi
+    private bool isFadingBlur = false;         // Apakah sedang fading
+
+
 
     void Start()
     {
@@ -61,6 +75,15 @@ public class FullMapController : MonoBehaviour
                 dof.active = false; // Awalannya blur OFF
             }
         }
+
+        // Set awal alpha blur ke 0 saat game mulai
+        if (blurOverlayImage != null)
+        {
+            Color c = blurOverlayImage.color;
+            c.a = 0f;
+            blurOverlayImage.color = c;
+        }
+
     }
 
 
@@ -90,6 +113,16 @@ public class FullMapController : MonoBehaviour
             {
                 dof.active = isMapActive; // Aktifkan blur saat map aktif
             }
+
+            //
+            if (blurOverlayImage != null)
+            {
+                targetBlurAlpha = isMapActive ? (blurAlphaOnMap / 255f) : 0f;
+                currentBlurAlpha = blurOverlayImage.color.a;
+                blurFadeTimer = 0f;
+                isFadingBlur = true;
+            }
+            //
         }
 
         //-
@@ -107,6 +140,24 @@ public class FullMapController : MonoBehaviour
             Vector2 currentPos = mapUIRect.anchoredPosition;
             mapUIRect.anchoredPosition = Vector2.MoveTowards(currentPos, targetMapPos, transitionSpeed * Time.deltaTime);
         }
+
+        // -- Proses fade blur alpha --
+        if (isFadingBlur && blurOverlayImage != null)
+        {
+            blurFadeTimer += Time.deltaTime;
+            float t = Mathf.Clamp01(blurFadeTimer / blurFadeDuration);
+            float newAlpha = Mathf.Lerp(currentBlurAlpha, targetBlurAlpha, t);
+
+            Color c = blurOverlayImage.color;
+            c.a = newAlpha;
+            blurOverlayImage.color = c;
+
+            if (Mathf.Approximately(newAlpha, targetBlurAlpha))
+            {
+                isFadingBlur = false;
+            }
+        }
+
 
     }
 

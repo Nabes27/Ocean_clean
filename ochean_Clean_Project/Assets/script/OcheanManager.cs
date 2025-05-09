@@ -8,6 +8,8 @@ public class OcheanManager : MonoBehaviour
     public float WaveHight = 0.1f;
     public float WaveFrequency = 1f;
     public float WaveSpeed = 0.8f;
+    public float NormalStrength = 1f;
+
 
     public Transform ocean;
 
@@ -43,6 +45,8 @@ public class OcheanManager : MonoBehaviour
         oceanMaterial.SetFloat("_WaveFrequency", WaveFrequency/100);
         oceanMaterial.SetFloat("_WaveSpeed", WaveSpeed/100);
         oceanMaterial.SetFloat("_WaveHight", WaveHight/100);
+        oceanMaterial.SetFloat("_NormalStrenght", NormalStrength/100);
+
     }
     // Update Watter
     

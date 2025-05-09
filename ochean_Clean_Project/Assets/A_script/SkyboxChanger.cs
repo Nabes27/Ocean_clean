@@ -5,6 +5,9 @@ public class SkyboxChanger : MonoBehaviour
 {
     public Material skyboxMaterial; // Assign Skybox Material di Inspector
     public float transitionDuration = 2f; // Waktu transisi dalam detik
+    public string SkyBox_Siang = "#808080";
+    public string SkyBox_Sore = "#95595D";
+
 
     private Coroutine transitionCoroutine;
 
@@ -12,11 +15,11 @@ public class SkyboxChanger : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            StartSkyboxTransition("#808080", 1f); // Warna abu-abu terang (Siang)
+            StartSkyboxTransition(SkyBox_Siang, 1f); // Warna abu-abu terang (Siang)
         }
         else if (Input.GetKeyDown(KeyCode.X))
         {
-            StartSkyboxTransition("#95595D", 0.85f); // Warna kemerahan (Sore)
+            StartSkyboxTransition(SkyBox_Sore, 0.85f); // Warna kemerahan (Sore)
         }
     }
 
