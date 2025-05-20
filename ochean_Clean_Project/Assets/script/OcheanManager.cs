@@ -9,6 +9,7 @@ public class OcheanManager : MonoBehaviour
     public float WaveFrequency = 1f;
     public float WaveSpeed = 0.8f;
     public float NormalStrength = 1f;
+    public float Somthnes = 0.04f;
 
 
     public Transform ocean;
@@ -40,12 +41,27 @@ public class OcheanManager : MonoBehaviour
         UpdateMaterial();
     }
 
+    //
+    public void ApplySomthnes()
+    {
+        if (oceanMaterial == null)
+        {
+            SetVaiables();
+        }
+
+        oceanMaterial.SetFloat("_Somthnes", Somthnes);
+    }
+
+    //
+
     void UpdateMaterial()
     {
-        oceanMaterial.SetFloat("_WaveFrequency", WaveFrequency/100);
-        oceanMaterial.SetFloat("_WaveSpeed", WaveSpeed/100);
-        oceanMaterial.SetFloat("_WaveHight", WaveHight/100);
-        oceanMaterial.SetFloat("_NormalStrenght", NormalStrength/100);
+        oceanMaterial.SetFloat("_WaveFrequency", WaveFrequency / 100);
+        oceanMaterial.SetFloat("_WaveSpeed", WaveSpeed / 100);
+        oceanMaterial.SetFloat("_WaveHight", WaveHight / 100);
+        oceanMaterial.SetFloat("_NormalStrenght", NormalStrength / 100);
+        oceanMaterial.SetFloat("_Somthnes", Somthnes);
+
 
     }
     // Update Watter
