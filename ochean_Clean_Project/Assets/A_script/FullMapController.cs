@@ -52,6 +52,7 @@ public class FullMapController : MonoBehaviour
     private float blurFadeTimer = 0f;          // Timer untuk transisi
     private bool isFadingBlur = false;         // Apakah sedang fading
 
+    private bool isDraggingArrow = false;
 
 
     void Start()
@@ -83,9 +84,20 @@ public class FullMapController : MonoBehaviour
             c.a = 0f;
             blurOverlayImage.color = c;
         }
+        // Nonaktifkan objek UI map dan blur overlay di awal
+        if (mapUI != null)
+            mapUI.SetActive(false);
+
+        if (blurOverlayImage != null)
+            blurOverlayImage.gameObject.SetActive(false);
 
     }
 
+    // Fungsi untuk tombol UI (OnClick)
+    public void ToggleMapUI()
+    {
+        ToggleMap(); // Pakai fungsi toggle yang sama
+    }
 
 
     void Update()
@@ -94,7 +106,7 @@ public class FullMapController : MonoBehaviour
         //-
         if (Input.GetKeyDown(KeyCode.M))
         {
-            isMapActive = !isMapActive;
+            ToggleMap();
 
             // Set posisi target map (naik atau turun)
             if (mapUIRect != null)
@@ -157,9 +169,58 @@ public class FullMapController : MonoBehaviour
                 isFadingBlur = false;
             }
         }
+        // Nonaktifkan setelah peta tertutup dan blur selesai
+        if (!isMapActive && !isFadingBlur)
+        {
+            if (mapUI != null && mapUI.activeSelf)
+                mapUI.SetActive(false);
+
+            if (blurOverlayImage != null && blurOverlayImage.gameObject.activeSelf)
+                blurOverlayImage.gameObject.SetActive(false);
+        }
 
 
     }
+
+    void ToggleMap()
+    {
+        isMapActive = !isMapActive;
+
+        // Aktifkan game object-nya di awal toggle ON
+        if (isMapActive)
+        {
+            if (mapUI != null) mapUI.SetActive(true);
+            if (blurOverlayImage != null) blurOverlayImage.gameObject.SetActive(true);
+        }
+
+        // Set posisi target map (naik atau turun)
+        if (mapUIRect != null)
+        {
+            targetMapPos = new Vector2(mapUIRect.anchoredPosition.x, isMapActive ? 0f : hiddenPosY);
+        }
+
+        // Matikan/aktifkan orbital camera
+        if (orbitalCamera != null)
+        {
+            orbitalCamera.SetOrbitalActive(!isMapActive);
+        }
+
+        // Depth of Field (jika pakai URP)
+        if (dof != null)
+        {
+            dof.active = isMapActive;
+        }
+
+        // Atur target alpha blur
+        if (blurOverlayImage != null)
+        {
+            targetBlurAlpha = isMapActive ? (blurAlphaOnMap / 255f) : 0f;
+            currentBlurAlpha = blurOverlayImage.color.a;
+            blurFadeTimer = 0f;
+            isFadingBlur = true;
+        }
+    }
+
 
     void UpdateArrowPosition()
     {
@@ -177,4 +238,32 @@ public class FullMapController : MonoBehaviour
         float angle = playerTransform.eulerAngles.y;
         arrowIcon.localRotation = Quaternion.Euler(0, 0, -angle);
     }
+        
+    public void OnBeginDragArrow()
+        {
+            isDraggingArrow = true;
+        }
+
+    public void OnDragArrow(Vector2 dragPosition)
+    {
+        if (!isDraggingArrow) return;
+
+        // Hitung offset di UI map → dunia 3D
+        Vector2 offset = dragPosition / mapScale;
+        Vector3 newPosition = initialPlayerPosition + new Vector3(offset.x, 0f, offset.y);
+
+        // Ubah posisi player di dunia
+        if (playerTransform != null)
+            playerTransform.position = newPosition;
+
+        // Perbarui ikon panah di minimap
+        UpdateArrowPosition();
+    }
+
+    public void OnEndDragArrow()
+    {
+        isDraggingArrow = false;
+    }
+
+
 }

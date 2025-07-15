@@ -51,8 +51,24 @@ public class ButtonManager : MonoBehaviour
     // Fungsi tombol: Ubah ke pagi dengan transisi
     public void ChangeToMorning()
     {
-        StartCoroutine(ChangeSkyboxWithFade(skyboxChanger.SkyBox_Pagi, 0.5f, 0.1f));
+        StartCoroutine(ChangeToMorningRoutine());
     }
+
+    IEnumerator ChangeToMorningRoutine()
+    {
+        yield return StartCoroutine(FadeScreen(0f, 1f, fadeDuration));
+
+        if (skyboxChanger != null)
+        {
+            skyboxChanger.StartSkyboxTransition(skyboxChanger.SkyBox_Pagi, 0.5f, 0.1f);
+            skyboxChanger.SkipToMorningAndAdvanceDay(); // ini memperbarui teks dan hari
+        }
+
+        yield return new WaitForSeconds(0.5f);
+
+        yield return StartCoroutine(FadeScreen(1f, 0f, fadeDuration));
+    }
+
 
     // Fungsi tombol: Bisa dipakai tombol lain
     public void ChangeToNight()

@@ -24,16 +24,18 @@ public class SkyboxChanger : MonoBehaviour
     public TextMeshProUGUI waktuText;
     public TextMeshProUGUI hariText;
 
-    private string[] waktuLabels = { "Siang", "Sore", "Malam", "Pagi" };
+    private string[] waktuLabels = { "Pagi", "Siang", "Sore", "Malam" };
     private int hariKe = 1;
 
 
     void Start()
     {
-        // Mulai dari siang
-        StartSkyboxTransition(SkyBox_Siang, 1f, 0.5f);
+        currentSkyboxIndex = 0; // Mulai dari Pagi
+        StartSkyboxTransition(SkyBox_Pagi, 0.5f, 0.1f);
         autoCycleCoroutine = StartCoroutine(CycleTimeOfDay());
+        UpdateUI();
     }
+
 
     //
     void UpdateUI()
@@ -47,10 +49,11 @@ public class SkyboxChanger : MonoBehaviour
 
     public void SkipToMorningAndAdvanceDay()
     {
-        currentSkyboxIndex = 3; // Set ke "Pagi"
+        currentSkyboxIndex = 0; // Index untuk Pagi
         hariKe++;
         UpdateUI();
     }
+
 
     //
 
@@ -68,21 +71,21 @@ public class SkyboxChanger : MonoBehaviour
         switch (currentSkyboxIndex)
         {
             case 0:
-                StartSkyboxTransition(SkyBox_Siang, 1f, 0.5f);
-                break;
-            case 1:
-                StartSkyboxTransition(SkyBox_Sore, 0.85f, 0.2f);
-                break;
-            case 2:
-                StartSkyboxTransition(SkyBox_Malam, 0.5f, 0.04f);
-                break;
-            case 3:
                 StartSkyboxTransition(SkyBox_Pagi, 0.5f, 0.1f);
                 hariKe++; // Tambah hari setiap masuk pagi
                 break;
+            case 1:
+                StartSkyboxTransition(SkyBox_Siang, 1f, 0.5f);
+                break;
+            case 2:
+                StartSkyboxTransition(SkyBox_Sore, 0.85f, 0.2f);
+                break;
+            case 3:
+                StartSkyboxTransition(SkyBox_Malam, 0.5f, 0.04f);
+                break;
         }
 
-        UpdateUI(); // Tambahkan ini
+        UpdateUI(); // Update label dan hari
 
         currentSkyboxIndex = (currentSkyboxIndex + 1) % 4;
     }
