@@ -41,18 +41,29 @@ public class VNManager : MonoBehaviour {
         }
     }
 
+    //
     void ShowLine() {
         DialogLine line = storyLines[currentLineIndex];
         CharacterData character = characters.Find(c => c.characterName == line.characterName);
 
         if (character != null) {
-            characterImage.sprite = character.characterSprite;
+            // Ambil sprite berdasarkan emosi
+            Sprite emotionSprite = character.GetEmotionSprite(line.emotion);
+            if (emotionSprite != null) {
+                characterImage.sprite = emotionSprite;
+            } else {
+                Debug.LogWarning($"Emotion '{line.emotion}' not found for character '{line.characterName}'");
+            }
+
             characterImage.rectTransform.anchoredPosition = character.uiPosition;
             characterNameText.text = character.characterName;
         }
 
         StartCoroutine(TypeLine(line.line));
     }
+
+    // 
+
 
     IEnumerator TypeLine(string line) {
         dialogText.text = "";
