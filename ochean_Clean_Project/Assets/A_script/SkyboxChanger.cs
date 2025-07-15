@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using TMPro;
 
 public class SkyboxChanger : MonoBehaviour
 {
@@ -19,6 +20,14 @@ public class SkyboxChanger : MonoBehaviour
 
     private int currentSkyboxIndex = 0;
 
+    [Header("Waktu & Hari")]
+    public TextMeshProUGUI waktuText;
+    public TextMeshProUGUI hariText;
+
+    private string[] waktuLabels = { "Siang", "Sore", "Malam", "Pagi" };
+    private int hariKe = 1;
+
+
     void Start()
     {
         // Mulai dari siang
@@ -26,18 +35,24 @@ public class SkyboxChanger : MonoBehaviour
         autoCycleCoroutine = StartCoroutine(CycleTimeOfDay());
     }
 
-    void Update()
+    //
+    void UpdateUI()
     {
-        if (Input.GetKeyDown(KeyCode.X))
-        {
-            ChangeSkyboxSequence();
-        }
+        if (waktuText != null)
+            waktuText.text = waktuLabels[currentSkyboxIndex];
 
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-            StartSkyboxTransition(SkyBox_Siang, 1f, 0.5f); // Contoh manual
-        }
+        if (hariText != null)
+            hariText.text = " " + hariKe;
     }
+
+    public void SkipToMorningAndAdvanceDay()
+    {
+        currentSkyboxIndex = 3; // Set ke "Pagi"
+        hariKe++;
+        UpdateUI();
+    }
+
+    //
 
     IEnumerator CycleTimeOfDay()
     {
@@ -47,29 +62,33 @@ public class SkyboxChanger : MonoBehaviour
             ChangeSkyboxSequence();
         }
     }
-
+//
     void ChangeSkyboxSequence()
     {
         switch (currentSkyboxIndex)
         {
             case 0:
-                StartSkyboxTransition(SkyBox_Siang, 1f, 0.5f); // Siang
+                StartSkyboxTransition(SkyBox_Siang, 1f, 0.5f);
                 break;
             case 1:
-                StartSkyboxTransition(SkyBox_Sore, 0.85f, 0.2f); // Sore
+                StartSkyboxTransition(SkyBox_Sore, 0.85f, 0.2f);
                 break;
             case 2:
-                StartSkyboxTransition(SkyBox_Malam, 0.5f, 0.04f); // Malam
+                StartSkyboxTransition(SkyBox_Malam, 0.5f, 0.04f);
                 break;
             case 3:
-                StartSkyboxTransition(SkyBox_Pagi, 0.5f, 0.1f); // Pagi
+                StartSkyboxTransition(SkyBox_Pagi, 0.5f, 0.1f);
+                hariKe++; // Tambah hari setiap masuk pagi
                 break;
         }
+
+        UpdateUI(); // Tambahkan ini
 
         currentSkyboxIndex = (currentSkyboxIndex + 1) % 4;
     }
 
-    void StartSkyboxTransition(string hexColor, float targetExposure, float targetSomthnes)
+//
+    public void StartSkyboxTransition(string hexColor, float targetExposure, float targetSomthnes)
     {
         if (transitionCoroutine != null)
         {

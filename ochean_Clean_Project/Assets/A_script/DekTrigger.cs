@@ -1,3 +1,4 @@
+
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
@@ -8,10 +9,15 @@ public class DekTrigger : MonoBehaviour
     public GameObject playerUI;
     public GameObject promptUI;
     public Camera mainCamera;
-    public Camera islandCamera;
+    //public Camera islandCamera;
     public OrbitalCamera orbitalCamera;
 
-    public Image transisiHitam; // Drag image hitam dari canvas transisi
+    public Image transisiHitam; 
+
+    public Transform islandViewTransform; // posisi target saat masuk dek
+    private Vector3 defaultCamPos;
+    private Quaternion defaultCamRot;
+
 
     private bool isPlayerNearby = false;
     private bool isInDek = false;
@@ -22,18 +28,20 @@ public class DekTrigger : MonoBehaviour
     void Start()
     {
         mainCamera.gameObject.SetActive(true);
-        islandCamera.gameObject.SetActive(false);
 
         if (playerUI != null) playerUI.SetActive(true);
         if (dekUI != null) dekUI.SetActive(false);
 
         if (transisiHitam != null)
         {
-            Color clr = transisiHitam.color;
-            clr.a = 0f;
-            transisiHitam.color = clr;
+            transisiHitam.gameObject.SetActive(false);
         }
+
+        // Simpan posisi awal kamera
+        defaultCamPos = mainCamera.transform.position;
+        defaultCamRot = mainCamera.transform.rotation;
     }
+
 
     void OnTriggerEnter(Collider other)
     {
@@ -66,18 +74,26 @@ public class DekTrigger : MonoBehaviour
             StartCoroutine(FadeTransition());
         }
     }
-
+    //
     IEnumerator FadeTransition()
     {
+        if (transisiHitam != null)
+            transisiHitam.gameObject.SetActive(true); // Aktifkan sebelum fade
+
         // Fade In (0 → 1)
         yield return StartCoroutine(Fade(0f, 1f, 0.5f));
 
-        // Setelah layar hitam penuh, ganti mode
+        // Ganti mode
         ToggleDek();
 
         // Fade Out (1 → 0)
         yield return StartCoroutine(Fade(1f, 0f, 0.5f));
+
+        if (transisiHitam != null)
+            transisiHitam.gameObject.SetActive(false); // Matikan kembali setelah fade
     }
+
+    //
 
     IEnumerator Fade(float startAlpha, float endAlpha, float duration)
     {
@@ -112,8 +128,12 @@ public class DekTrigger : MonoBehaviour
             playerRb.angularVelocity = Vector3.zero;
             playerBoat.enabled = false;
 
-            mainCamera.gameObject.SetActive(false);
-            islandCamera.gameObject.SetActive(true);
+            // Pindahkan kamera ke islandViewTransform
+            if (islandViewTransform != null)
+            {
+                mainCamera.transform.position = islandViewTransform.position;
+                mainCamera.transform.rotation = islandViewTransform.rotation;
+            }
 
             if (orbitalCamera != null)
                 orbitalCamera.enabled = false;
@@ -122,11 +142,13 @@ public class DekTrigger : MonoBehaviour
         {
             playerBoat.enabled = true;
 
-            mainCamera.gameObject.SetActive(true);
-            islandCamera.gameObject.SetActive(false);
+            // Kembalikan posisi kamera
+            mainCamera.transform.position = defaultCamPos;
+            mainCamera.transform.rotation = defaultCamRot;
 
             if (orbitalCamera != null)
                 orbitalCamera.enabled = true;
         }
     }
+
 }
