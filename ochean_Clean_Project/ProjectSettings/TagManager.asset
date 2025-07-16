@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Storage
   - Objek
+  - TeleportPoint
+  - Ground
   layers:
   - Default
   - TransparentFX
@@ -21,7 +23,7 @@ TagManager:
   - WCP_R
   - WCP_L
   - WCP_END
-  - 
+  - Ground
   - 
   - 
   - 

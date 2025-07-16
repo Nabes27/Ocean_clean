@@ -17,6 +17,15 @@ public class OrbitalCamera : MonoBehaviour
 
     private bool isOrbitalActive = false; // Apakah mode orbital aktif
 
+    [Header("Sudut Awal Kamera")]
+    public float startX = 0.0f;
+    public float startY = 20.0f;
+
+    void Start()
+    {
+        currentX = startX;
+        currentY = Mathf.Clamp(startY, yMinLimit, yMaxLimit);
+    }
 
 
     //

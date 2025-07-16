@@ -20,6 +20,9 @@ public class VNManager : MonoBehaviour {
     private bool isTyping = false;
     private string currentText = "";
 
+    [Header("Setelah Cerita Selesai")]
+    public GameObject objectToDisableAtEnd; 
+
     void Start() {
         ShowLine();
     }
@@ -32,10 +35,18 @@ public class VNManager : MonoBehaviour {
                 isTyping = false;
             } else {
                 currentLineIndex++;
-                if (currentLineIndex < storyLines.Count) {
+                if (currentLineIndex < storyLines.Count)
+                {
                     ShowLine();
-                } else {
+                }
+                else
+                {
                     Debug.Log("End of story.");
+
+                    if (objectToDisableAtEnd != null)
+                    {
+                        objectToDisableAtEnd.SetActive(false);
+                    }                
                 }
             }
         }

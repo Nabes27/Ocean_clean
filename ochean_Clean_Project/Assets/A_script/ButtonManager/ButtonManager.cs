@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using UnityEngine.SceneManagement; 
 
 public class ButtonManager : MonoBehaviour
 {
@@ -48,6 +49,28 @@ public class ButtonManager : MonoBehaviour
     }
 
     //
+
+    public void LoadSceneByIndex(int sceneIndex)
+    {
+        StartCoroutine(LoadSceneRoutine(sceneIndex));
+    }
+
+    public void ToggleGameObject(GameObject target)
+    {
+        if (target != null)
+        {
+            target.SetActive(!target.activeSelf); // Toggle status
+        }
+    }
+
+
+    IEnumerator LoadSceneRoutine(int sceneIndex)
+    {
+        yield return StartCoroutine(FadeScreen(0f, 1f, fadeDuration)); // Fade Out
+
+        SceneManager.LoadScene(sceneIndex); // Pindah scene
+    }
+
     // Fungsi tombol: Ubah ke pagi dengan transisi
     public void ChangeToMorning()
     {

@@ -23,7 +23,7 @@ public class DekTrigger : MonoBehaviour
     private bool isPlayerNearby = false;
     private bool isInDek = false;
 
-    private PlayerBoat playerBoat;
+    public PlayerBoat playerBoat;
     private Rigidbody playerRb;
 
     private Vector3 lastOrbitalCamPos;
