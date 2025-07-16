@@ -1,4 +1,5 @@
 
+
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
@@ -12,7 +13,7 @@ public class DekTrigger : MonoBehaviour
     //public Camera islandCamera;
     public OrbitalCamera orbitalCamera;
 
-    public Image transisiHitam; 
+    public Image transisiHitam;
 
     public Transform islandViewTransform; // posisi target saat masuk dek
     private Vector3 defaultCamPos;
@@ -24,6 +25,9 @@ public class DekTrigger : MonoBehaviour
 
     private PlayerBoat playerBoat;
     private Rigidbody playerRb;
+
+    private Vector3 lastOrbitalCamPos;
+    private Quaternion lastOrbitalCamRot;
 
     void Start()
     {
@@ -115,6 +119,7 @@ public class DekTrigger : MonoBehaviour
     }
 
     void ToggleDek()
+    //
     {
         isInDek = !isInDek;
 
@@ -127,6 +132,11 @@ public class DekTrigger : MonoBehaviour
             playerRb.velocity = Vector3.zero;
             playerRb.angularVelocity = Vector3.zero;
             playerBoat.enabled = false;
+
+            // Simpan posisi terakhir sebelum nonaktifkan orbital
+            lastOrbitalCamPos = mainCamera.transform.position;
+            lastOrbitalCamRot = mainCamera.transform.rotation;
+
 
             // Pindahkan kamera ke islandViewTransform
             if (islandViewTransform != null)
@@ -143,12 +153,21 @@ public class DekTrigger : MonoBehaviour
             playerBoat.enabled = true;
 
             // Kembalikan posisi kamera
-            mainCamera.transform.position = defaultCamPos;
-            mainCamera.transform.rotation = defaultCamRot;
+            mainCamera.transform.position = lastOrbitalCamPos;
+            mainCamera.transform.rotation = lastOrbitalCamRot;
+            //
+
+            if (orbitalCamera != null)
+            {
+                orbitalCamera.enabled = true;
+                orbitalCamera.SetOrbitalActive(true);
+            }
+
 
             if (orbitalCamera != null)
                 orbitalCamera.enabled = true;
         }
     }
+    //
 
 }

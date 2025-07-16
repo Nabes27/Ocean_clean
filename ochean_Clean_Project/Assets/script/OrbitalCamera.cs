@@ -1,3 +1,4 @@
+
 using UnityEngine;
 
 public class OrbitalCamera : MonoBehaviour
@@ -15,6 +16,8 @@ public class OrbitalCamera : MonoBehaviour
     public float yMaxLimit = 60f;       // Batas rotasi vertikal maksimum
 
     private bool isOrbitalActive = false; // Apakah mode orbital aktif
+
+
 
     //
     public void SetOrbitalActive(bool value)
