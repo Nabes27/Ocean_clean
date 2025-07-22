@@ -9,6 +9,7 @@ public class OceanSound : MonoBehaviour
     public LayerMask beachLayer; // Layer untuk area pantai
     private bool isInBeachArea = false;
     public float fadeDuration = 1.0f; // Durasi fade in/out
+    public float TragetVolume = 0.3f;// Volume awal
 
     void Start()
     {
@@ -23,13 +24,13 @@ public class OceanSound : MonoBehaviour
         if (colliders.Length > 0)
         {
             isInBeachArea = true;
-            audioSource.volume = 1;
+            audioSource.volume = TragetVolume;
             audioSource.clip = beachSound;
         }
         else
         {
             isInBeachArea = false;
-            audioSource.volume = 1;
+            audioSource.volume = TragetVolume;
             audioSource.clip = oceanWaveSound;
         }
         audioSource.Play();
@@ -66,22 +67,24 @@ public class OceanSound : MonoBehaviour
         float timer = 0;
         while (timer < fadeDuration)
         {
-            audioSource.volume = Mathf.Lerp(0, 1, timer / fadeDuration);
+            audioSource.volume = Mathf.Lerp(0, TragetVolume, timer / fadeDuration);
             timer += Time.deltaTime;
             yield return null;
         }
-        audioSource.volume = 1;
+        audioSource.volume = TragetVolume;
     }
-
+    //
     IEnumerator FadeOut()
     {
         float timer = 0;
+        float startVolume = audioSource.volume; // <- Gunakan volume saat ini
         while (timer < fadeDuration)
         {
-            audioSource.volume = Mathf.Lerp(1, 0, timer / fadeDuration);
+            audioSource.volume = Mathf.Lerp(startVolume, 0, timer / fadeDuration);
             timer += Time.deltaTime;
             yield return null;
         }
         audioSource.volume = 0;
     }
+
 }

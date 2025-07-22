@@ -43,7 +43,7 @@ GraphicsSettings:
   m_DefaultMobileRenderingPath: 1
   m_TierSettings: []
   m_LightmapStripping: 0
-  m_FogStripping: 0
+  m_FogStripping: 1
   m_InstancingStripping: 0
   m_BrgStripping: 0
   m_LightmapKeepPlain: 1
@@ -63,5 +63,5 @@ GraphicsSettings:
   m_SRPDefaultSettings:
     UnityEngine.Rendering.Universal.UniversalRenderPipeline: {fileID: 11400000, guid: 150fe4bdc2c94e24b88a4418ddcf1c0a, type: 2}
   m_LightProbeOutsideHullStrategy: 0
-  m_CameraRelativeLightCulling: 0
+  m_CameraRelativeLightCulling: 1
   m_CameraRelativeShadowCulling: 0

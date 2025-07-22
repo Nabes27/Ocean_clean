@@ -38,6 +38,11 @@ public class PlayerBoat : MonoBehaviour
     public float propellerSpeed = 360f;     // Derajat per detik (putaran)
 
 
+    [Header("Suara Mesin")]
+    public AudioSource engineAudio;
+    public AudioClip engineRunningClip;
+    public float engineVolume = 0.5f;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -107,7 +112,22 @@ public class PlayerBoat : MonoBehaviour
 
             propeller.Rotate(Vector3.right * rotationDir * propellerSpeed * Time.fixedDeltaTime, Space.Self);
         }
+        
+        // Suara mesin kapal
+        if (engineAudio != null && engineRunningClip != null)
+        {
+            if (!engineAudio.isPlaying)
+            {
+                engineAudio.clip = engineRunningClip;
+                engineAudio.volume = engineVolume;
+                engineAudio.loop = true;
+                engineAudio.Play();
+            }
 
+            // Atur pitch berdasarkan gerakan
+            float targetPitch = Mathf.Abs(moveInput) > 0.1f ? 1.5f : 1.0f; // 1.5 = suara meraung, 1.0 = idle
+            engineAudio.pitch = Mathf.Lerp(engineAudio.pitch, targetPitch, Time.fixedDeltaTime * 5f);
+        }
 
     }
 

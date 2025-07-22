@@ -12,6 +12,6 @@ EditorBuildSettings:
     path: Assets/Scenes/menu hari.unity
     guid: 5128c0014180bba488b4dae7543da708
   - enabled: 1
-    path: Assets/Scenes/game tutorial.unity
+    path: Assets/Scenes/Main_Game.unity
     guid: e938ebfc059715b45aab2a07b0febcbc
   m_configObjects: {}

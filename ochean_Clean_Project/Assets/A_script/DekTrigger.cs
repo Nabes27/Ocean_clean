@@ -8,6 +8,7 @@ public class DekTrigger : MonoBehaviour
 {
     public GameObject dekUI;
     public GameObject playerUI;
+    public GameObject PlayerSound;
     public GameObject promptUI;
     public Camera mainCamera;
     //public Camera islandCamera;
@@ -23,7 +24,7 @@ public class DekTrigger : MonoBehaviour
     private bool isPlayerNearby = false;
     private bool isInDek = false;
 
-    public PlayerBoat playerBoat;
+    private PlayerBoat playerBoat;
     private Rigidbody playerRb;
 
     private Vector3 lastOrbitalCamPos;
@@ -35,6 +36,7 @@ public class DekTrigger : MonoBehaviour
 
         if (playerUI != null) playerUI.SetActive(true);
         if (dekUI != null) dekUI.SetActive(false);
+        if (PlayerSound != null) PlayerSound.SetActive(true);
 
         if (transisiHitam != null)
         {
@@ -126,6 +128,7 @@ public class DekTrigger : MonoBehaviour
         dekUI.SetActive(isInDek);
         playerUI.SetActive(!isInDek);
         promptUI.SetActive(!isInDek);
+        PlayerSound.SetActive(!isInDek);
 
         if (isInDek)
         {

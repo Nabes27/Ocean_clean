@@ -17,6 +17,10 @@ public class OcheanManager : MonoBehaviour
     Material oceanMaterial;
     Texture2D WaveDisplacment;
 
+    [Header("Ocean Colors (Hex)")]
+    public Color color = new Color32(0x00, 0x55, 0xFF, 0xFF);     // #0055FF
+    public Color color2 = new Color32(0x00, 0xBB, 0xD1, 0xFF);    // #00BBD1
+
     void Start()
     {
         SetVaiables();
@@ -62,10 +66,19 @@ public class OcheanManager : MonoBehaviour
         oceanMaterial.SetFloat("_NormalStrenght", NormalStrength / 100);
         oceanMaterial.SetFloat("_Somthnes", Somthnes);
 
+        oceanMaterial.SetColor("_Color", color);
+        oceanMaterial.SetColor("_Color_2", color2);
 
     }
     // Update Watter
-    
+    public void UpdateColors()
+    {
+        if (oceanMaterial == null)
+            SetVaiables();
+
+        UpdateMaterial();
+    }
+
 
 
 }

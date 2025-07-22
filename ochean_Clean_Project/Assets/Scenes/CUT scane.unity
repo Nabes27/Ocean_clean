@@ -1934,6 +1934,7 @@ MonoBehaviour:
   trashText: {fileID: 1601351868}
   storageText: {fileID: 568799465}
   storageBar: {fileID: 985692191}
+  DekKapal: {fileID: 0}
   maxStorageCapacity: 8
 --- !u!4 &160634877
 Transform:
@@ -2820,6 +2821,8 @@ MonoBehaviour:
   WaveHight: 0.55
   WaveFrequency: 0.44
   WaveSpeed: 2.36
+  NormalStrength: 1
+  Somthnes: 0.04
   ocean: {fileID: 3300281755877823992}
 --- !u!1 &213848381
 GameObject:
@@ -15123,6 +15126,8 @@ MonoBehaviour:
   maxDistance: 20
   yMinLimit: -15
   yMaxLimit: 60
+  startX: 0
+  startY: 20
 --- !u!4 &1349846633
 Transform:
   m_ObjectHideFlags: 0
