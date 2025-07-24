@@ -28,6 +28,7 @@ public class SkyboxChanger : MonoBehaviour
     private int hariKe = 1;
 
 
+
     void Start()
     {
         currentSkyboxIndex = 0; // Mulai dari Pagi
@@ -46,6 +47,13 @@ public class SkyboxChanger : MonoBehaviour
         if (hariText != null)
             hariText.text = " " + hariKe;
     }
+
+    
+    public int CurrentSkyboxIndex()
+    {
+        return currentSkyboxIndex;
+    }
+
 
     public void SkipToMorningAndAdvanceDay()
     {

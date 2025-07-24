@@ -27,6 +27,16 @@ public class CorruptedZoneDetector : MonoBehaviour
         oceanManager.UpdateColors();
     }
 
+    public void ForceResetOcean()
+    {
+        if (colorTransitionCoroutine != null)
+            StopCoroutine(colorTransitionCoroutine);
+
+        colorTransitionCoroutine = StartCoroutine(TransitionOceanColor(
+            oceanManager.color, oceanManager.color2,
+            normalColor, normalColor2));
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (((1 << other.gameObject.layer) & corruptedZoneLayer) != 0)
@@ -54,6 +64,9 @@ public class CorruptedZoneDetector : MonoBehaviour
                 normalColor, normalColor2));
         }
     }
+
+
+
 
     private IEnumerator TransitionOceanColor(Color fromColor, Color fromColor2, Color toColor, Color toColor2)
     {

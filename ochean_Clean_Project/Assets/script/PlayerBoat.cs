@@ -43,6 +43,9 @@ public class PlayerBoat : MonoBehaviour
     public AudioClip engineRunningClip;
     public float engineVolume = 0.5f;
 
+    [Header("GameObject Saat Max Capacity")]
+    public List<GameObject> objectsToEnableWhenFull;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -112,7 +115,7 @@ public class PlayerBoat : MonoBehaviour
 
             propeller.Rotate(Vector3.right * rotationDir * propellerSpeed * Time.fixedDeltaTime, Space.Self);
         }
-        
+
         // Suara mesin kapal
         if (engineAudio != null && engineRunningClip != null)
         {
@@ -204,6 +207,17 @@ public class PlayerBoat : MonoBehaviour
     {
         currentTrash = Mathf.Clamp(currentTrash + amount, 0, maxTrashCapacity);
         ScoreManager.instance.UpdateTrashUI(currentTrash, maxTrashCapacity);
+        //
+        // Cek apakah sudah mencapai kapasitas maksimum
+        if (currentTrash >= maxTrashCapacity)
+        {
+            foreach (GameObject go in objectsToEnableWhenFull)
+            {
+                if (go != null)
+                    go.SetActive(true);
+            }
+        }
+
     }
 
     public void TransferTrashToStorage()
@@ -233,6 +247,28 @@ public class PlayerBoat : MonoBehaviour
 
         deceleration = originalDeceleration;
     }
+    
+    public int GetCurrentTrash()
+    {
+        return currentTrash;
+    }
+
+    public void RemoveTrash(int amount)
+    {
+        currentTrash = Mathf.Clamp(currentTrash - amount, 0, maxTrashCapacity);
+        ScoreManager.instance.UpdateTrashUI(currentTrash, maxTrashCapacity);
+
+        // Jika tidak penuh lagi, nonaktifkan objek
+        if (currentTrash < maxTrashCapacity)
+        {
+            foreach (GameObject go in objectsToEnableWhenFull)
+            {
+                if (go != null)
+                    go.SetActive(false);
+            }
+        }
+    }
+
 
 
 }

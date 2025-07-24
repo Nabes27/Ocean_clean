@@ -8,6 +8,7 @@ TagManager:
   - Objek
   - TeleportPoint
   - Ground
+  - GameMusic
   layers:
   - Default
   - TransparentFX
@@ -25,7 +26,7 @@ TagManager:
   - WCP_END
   - Ground
   - Corupted
-  - 
+  - CP-Tutorial
   - 
   - 
   - 

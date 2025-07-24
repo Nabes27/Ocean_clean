@@ -12,6 +12,15 @@ EditorBuildSettings:
     path: Assets/Scenes/menu hari.unity
     guid: 5128c0014180bba488b4dae7543da708
   - enabled: 1
-    path: Assets/Scenes/Main_Game.unity
-    guid: e938ebfc059715b45aab2a07b0febcbc
+    path: Assets/Scenes/Fix Main Game.unity
+    guid: 7531582408de0344ca774e6ef26ae428
+  - enabled: 1
+    path: Assets/Scenes/Day1/Day1 cut scane.unity
+    guid: c269e862605af224cbad02384dcf0984
+  - enabled: 1
+    path: Assets/Scenes/Day1/Day1 Selsai.unity
+    guid: 69d3c39c1a56f074797c24ab354c3b76
+  - enabled: 1
+    path: Assets/Scenes/Day1/Day1 - 2.unity
+    guid: b78553b1a47e13d40aad657941a076d7
   m_configObjects: {}

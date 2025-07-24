@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
-using UnityEngine.SceneManagement; 
+using UnityEngine.SceneManagement;
 
 public class ButtonManager : MonoBehaviour
 {
@@ -155,4 +155,29 @@ public class ButtonManager : MonoBehaviour
         Application.Quit();
         Debug.Log("Quit Game");
     }
+    
+    public void StopAndDestroyGameMusic()
+    {
+        StartCoroutine(FadeOutAndDestroyMusic());
+    }
+
+    IEnumerator FadeOutAndDestroyMusic()
+    {
+        GameObject musicObj = GameObject.FindWithTag("GameMusic");
+
+        if (musicObj != null)
+        {
+            GameMusicManager manager = musicObj.GetComponent<GameMusicManager>();
+            if (manager != null)
+            {
+                manager.FadeOutAndDestroy(2f); // panggil fungsi di script manager
+            }
+        }
+
+        yield return null;
+    }
+
+
+
+
 }

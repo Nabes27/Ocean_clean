@@ -1,3 +1,4 @@
+
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -20,8 +21,22 @@ public class VNManager : MonoBehaviour {
     private bool isTyping = false;
     private string currentText = "";
 
-    [Header("Setelah Cerita Selesai")]
-    public GameObject objectToDisableAtEnd; 
+
+    [Tooltip("GameObject yang ingin dinonaktifkan setelah cerita selesai (boleh kosong)")]
+    public List<GameObject> objectsToDisableAtEnd;
+
+
+    [Header("GameObjects yang Diaktifkan Setelah Cerita Selesai")]
+    public List<GameObject> objectsToActivateAtEnd;
+
+    [Tooltip("Berapa banyak objek yang ingin diaktifkan saat cerita selesai (0 = tidak aktifkan apapun)")]
+    public int numberOfObjectsToActivate = 0;
+
+
+
+    [Header("Pindahkan GameObject ke bawah (Y = -30) Setelah Cerita Selesai")]
+    public List<GameObject> objectsToMoveDownAfterEnd;
+
 
     void Start() {
         ShowLine();
@@ -29,25 +44,55 @@ public class VNManager : MonoBehaviour {
 
     void Update() {
         if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space)) {
-            if (isTyping) {
+            if (isTyping)
+            {
                 StopAllCoroutines();
                 dialogText.text = currentText;
                 isTyping = false;
-            } else {
+            }
+            else
+            {
                 currentLineIndex++;
                 if (currentLineIndex < storyLines.Count)
                 {
                     ShowLine();
                 }
+                //
                 else
                 {
                     Debug.Log("End of story.");
-
-                    if (objectToDisableAtEnd != null)
+                    //
+                    foreach (GameObject obj in objectsToDisableAtEnd)
                     {
-                        objectToDisableAtEnd.SetActive(false);
-                    }                
+                        if (obj != null)
+                            obj.SetActive(false);
+                    }
+
+                    //
+
+                    for (int i = 0; i < numberOfObjectsToActivate && i < objectsToActivateAtEnd.Count; i++)
+                    {
+                        if (objectsToActivateAtEnd[i] != null)
+                        {
+                            objectsToActivateAtEnd[i].SetActive(true);
+                        }
+                    }
+
+                    //
+                    // Pindahkan GameObject corrupt zone ke bawah agar trigger tidak aktif
+                    foreach (GameObject go in objectsToMoveDownAfterEnd)
+                    {
+                        if (go != null)
+                        {
+                            Vector3 newPos = go.transform.position;
+                            newPos.y = -30f;
+                            go.transform.position = newPos;
+                        }
+                    }
+
+                    //
                 }
+
             }
         }
     }

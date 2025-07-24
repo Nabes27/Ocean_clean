@@ -14,6 +14,12 @@ public class ScoreManager : MonoBehaviour
     public int maxStorageCapacity = 100; // Kapasitas maksimum storage
     private int currentStorage = 0;      // Jumlah sampah di storage
 
+    // Tambahkan di atas
+    public TextMeshProUGUI storageAText;
+    public Image storageABar;
+    public TextMeshProUGUI storageBText;
+    public Image storageBBar;
+
     private void Awake()
     {
         if (instance == null)
@@ -53,4 +59,25 @@ public class ScoreManager : MonoBehaviour
             storageBar.fillAmount = (float)currentStorage / maxStorageCapacity;
         }
     }
+
+    // Tambahkan fungsi baru:
+    public void UpdateStorageUI(DualStorage.StorageID id, int current, int max)
+    {
+        switch (id)
+        {
+            case DualStorage.StorageID.A:
+                if (storageAText != null)
+                    storageAText.text = $"Storage A: {current}/{max}";
+                if (storageABar != null)
+                    storageABar.fillAmount = (float)current / max;
+                break;
+            case DualStorage.StorageID.B:
+                if (storageBText != null)
+                    storageBText.text = $"Storage B: {current}/{max}";
+                if (storageBBar != null)
+                    storageBBar.fillAmount = (float)current / max;
+                break;
+        }
+    }
+
 }
