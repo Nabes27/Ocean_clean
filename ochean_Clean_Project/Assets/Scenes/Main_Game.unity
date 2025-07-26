@@ -2773,6 +2773,10 @@ MonoBehaviour:
   storageBar: {fileID: 393135257}
   DekKapal: {fileID: 1330136660}
   maxStorageCapacity: 8
+  storageAText: {fileID: 0}
+  storageABar: {fileID: 0}
+  storageBText: {fileID: 0}
+  storageBBar: {fileID: 0}
 --- !u!4 &160634877
 Transform:
   m_ObjectHideFlags: 0
@@ -22635,7 +22639,10 @@ MonoBehaviour:
   - characterName: Graha
     emotion: GBiasa
     line: Etc
-  objectToDisableAtEnd: {fileID: 1527496972}
+  objectsToDisableAtEnd: []
+  objectsToActivateAtEnd: []
+  numberOfObjectsToActivate: 0
+  objectsToMoveDownAfterEnd: []
 --- !u!4 &1414455052
 Transform:
   m_ObjectHideFlags: 0
@@ -33496,7 +33503,7 @@ MonoBehaviour:
   turnSpeed: 50
   acceleration: 2
   deceleration: 0.1
-  maxTrashCapacity: 2
+  maxTrashCapacity: 12
   groundTag: Ground
   groundCheck: {fileID: 1640155378387425925}
   checkRadius: 0.5
@@ -33509,6 +33516,7 @@ MonoBehaviour:
   engineAudio: {fileID: 534704396}
   engineRunningClip: {fileID: 8300000, guid: 2b7985c17e2bb2e4999cec599ccc4fc2, type: 3}
   engineVolume: 0.14
+  objectsToEnableWhenFull: []
 --- !u!114 &1916972154
 MonoBehaviour:
   m_ObjectHideFlags: 0

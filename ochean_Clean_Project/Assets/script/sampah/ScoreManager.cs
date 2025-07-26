@@ -20,6 +20,14 @@ public class ScoreManager : MonoBehaviour
     public TextMeshProUGUI storageBText;
     public Image storageBBar;
 
+    // Tambahkan field di ScoreManager:
+    private int storageACurrent = 0;
+    private int storageBCurrent = 0;
+
+    public int maxCapacityA = 15;
+    public int maxCapacityB = 15;
+
+
     private void Awake()
     {
         if (instance == null)
@@ -79,5 +87,33 @@ public class ScoreManager : MonoBehaviour
                 break;
         }
     }
+
+    public int TransferTrashToStorage(DualStorage.StorageID id, int amount)
+    {
+        int max = (id == DualStorage.StorageID.A) ? maxCapacityA : maxCapacityB;
+        int current = (id == DualStorage.StorageID.A) ? storageACurrent : storageBCurrent;
+
+        int available = max - current;
+        int toTransfer = Mathf.Min(available, amount);
+        current += toTransfer;
+
+        if (id == DualStorage.StorageID.A)
+            storageACurrent = current;
+        else
+            storageBCurrent = current;
+
+        // Update UI
+        UpdateStorageUI(id, current, max);
+        return toTransfer;
+    }
+
+    public bool IsStorageFull(DualStorage.StorageID id)
+    {
+        if (id == DualStorage.StorageID.A)
+            return storageACurrent >= maxCapacityA;
+        else
+            return storageBCurrent >= maxCapacityB;
+    }
+
 
 }

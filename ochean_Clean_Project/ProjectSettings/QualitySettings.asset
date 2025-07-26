@@ -56,7 +56,6 @@ QualitySettings:
     terrainMaxTrees: 50
     excludedTargetPlatforms:
     - WebGL
-    - Android
   - serializedVersion: 3
     name: Low
     pixelLightCount: 0
@@ -155,8 +154,7 @@ QualitySettings:
     terrainBillboardStart: 50
     terrainFadeLength: 5
     terrainMaxTrees: 50
-    excludedTargetPlatforms:
-    - WebGL
+    excludedTargetPlatforms: []
   - serializedVersion: 3
     name: High
     pixelLightCount: 2
@@ -205,8 +203,7 @@ QualitySettings:
     terrainBillboardStart: 50
     terrainFadeLength: 5
     terrainMaxTrees: 50
-    excludedTargetPlatforms:
-    - WebGL
+    excludedTargetPlatforms: []
   - serializedVersion: 3
     name: Very High
     pixelLightCount: 3
@@ -294,7 +291,7 @@ QualitySettings:
     asyncUploadBufferSize: 16
     asyncUploadPersistentBuffer: 1
     resolutionScalingFixedDPIFactor: 1
-    customRenderPipeline: {fileID: 0}
+    customRenderPipeline: {fileID: 11400000, guid: 67098c1f7b6282d4590526e8b1bba4c5, type: 2}
     terrainQualityOverrides: 0
     terrainPixelError: 1
     terrainDetailDensityScale: 1
@@ -318,7 +315,7 @@ QualitySettings:
     Server: 0
     Stadia: 5
     Standalone: 5
-    WebGL: 3
+    WebGL: 4
     Windows Store Apps: 5
     XboxOne: 5
     iPhone: 2

@@ -1,8 +1,4 @@
-
 using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
-using System.Collections;
 using System.Collections.Generic;
 
 public class DualStorage : MonoBehaviour
@@ -10,22 +6,10 @@ public class DualStorage : MonoBehaviour
     public enum StorageID { A, B }
     public StorageID storageID;
 
-    public int maxCapacity = 8;
-    private int currentTrash = 0;
-
-    [Header("UI")]
-    public TMPro.TextMeshProUGUI storageUIText;
-    public UnityEngine.UI.Image storageUIBar;
-
-    [Tooltip("GameObject yang ingin dinonaktifkan setelah Storage Yang di pilih penuh (boleh kosong)")]
+    [Header("Aksi Saat Storage Penuh")]
     public List<GameObject> objectsToDisableAtEnd;
-
-    [Tooltip("GameObject yang ingin diaktifkan setelah Storage Yang di pilih penuh (boleh kosong)")]
     public List<GameObject> objectsToEnableAtEnd;
-
-    [Header("Pindahkan GameObject ke bawah (Y = -30) Setelah Cerita Selesai")]
     public List<GameObject> objectsToMoveDownAfterEnd;
-
 
     private void OnTriggerEnter(Collider other)
     {
@@ -34,59 +18,25 @@ public class DualStorage : MonoBehaviour
             PlayerBoat playerBoat = other.GetComponent<PlayerBoat>();
             if (playerBoat != null)
             {
-                int transferred = TransferFromPlayer(playerBoat.GetCurrentTrash(), playerBoat);
-                playerBoat.RemoveTrash(transferred); // Hapus dari kapal
-            }
-        }
-    }
+                int jumlahSampah = playerBoat.GetCurrentTrash();
 
-    public int TransferFromPlayer(int amountFromPlayer, PlayerBoat playerBoat)
-    {
-        int available = maxCapacity - currentTrash;
-        int toTransfer = Mathf.Min(available, amountFromPlayer);
-        currentTrash += toTransfer;
-        UpdateStorageUI();
+                // Kirim ke ScoreManager, yang akan mengatur kapasitas & UI
+                int diterima = ScoreManager.instance.TransferTrashToStorage(storageID, jumlahSampah);
+                playerBoat.RemoveTrash(diterima);
 
-        // Panggil ScoreManager untuk UI jika perlu
-        if (ScoreManager.instance != null)
-        {
-            ScoreManager.instance.UpdateStorageUI(storageID, currentTrash, maxCapacity);
-        }
-
-        // Jika storage sudah penuh
-        if (currentTrash >= maxCapacity)
-        {
-            foreach (GameObject go in objectsToDisableAtEnd)
-            {
-                if (go != null) go.SetActive(false);
-            }
-
-            foreach (GameObject go in objectsToEnableAtEnd)
-            {
-                if (go != null) go.SetActive(true);
-            }
-
-            foreach (GameObject go in objectsToMoveDownAfterEnd)
-            {
-                if (go != null)
+                // Kalau sudah penuh, jalankan aksi
+                if (ScoreManager.instance.IsStorageFull(storageID))
                 {
-                    Vector3 pos = go.transform.position;
-                    pos.y -= 30f;
-                    go.transform.position = pos;
+                    foreach (var go in objectsToDisableAtEnd)
+                        if (go != null) go.SetActive(false);
+
+                    foreach (var go in objectsToEnableAtEnd)
+                        if (go != null) go.SetActive(true);
+
+                    foreach (var go in objectsToMoveDownAfterEnd)
+                        if (go != null) go.transform.position += new Vector3(0, -30f, 0);
                 }
             }
         }
-
-
-        return toTransfer;
-    }
-
-    public void UpdateStorageUI()
-    {
-        if (storageUIText != null)
-            storageUIText.text = $"Storage {storageID}: {currentTrash}/{maxCapacity}";
-
-        if (storageUIBar != null)
-            storageUIBar.fillAmount = (float)currentTrash / maxCapacity;
     }
 }

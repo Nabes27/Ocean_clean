@@ -3,8 +3,9 @@ using UnityEngine.UI;
 // Tambahkan ini di atas
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
-
-
+using System.Collections;
+using System.Collections.Generic;
+// Hapus semua Mark tombol B
 
 public class FullMapController : MonoBehaviour
 {
@@ -23,6 +24,16 @@ public class FullMapController : MonoBehaviour
 
     [Header("Camera Control")]
     public OrbitalCamera orbitalCamera;  // Drag komponen OrbitalCamera ke sini via Inspector
+
+    [Header("Mark Location")]
+    public GameObject markerPrefab; // Drag prefab image marker ke sini
+    public RectTransform markerParent; // Tempat marker muncul (biasanya sama dengan mapUI)
+    private bool isMarkingActive = false;
+    private List<GameObject> spawnedMarkers = new List<GameObject>();
+
+    [Header("UI Mark Notification")]
+    public GameObject markNotificationUI; // Drag UI notifikasi dari Inspector
+
 
     public bool IsMapActive()
     {
@@ -137,7 +148,12 @@ public class FullMapController : MonoBehaviour
             //
         }
 
-        //-
+        // Hapus semua marker saat map aktif dan tekan B
+        if (isMapActive && Input.GetKeyDown(KeyCode.B))
+        {
+            ClearAllMarkers();
+            Debug.Log("Semua marker dihapus.");
+        }
 
         // Update posisi dan rotasi ikon jika map aktif
         if (isMapActive && arrowIcon != null && playerTransform != null)
@@ -179,8 +195,63 @@ public class FullMapController : MonoBehaviour
                 blurOverlayImage.gameObject.SetActive(false);
         }
 
+        // Toggle Marking Mode dengan tombol N
+        if (isMapActive && Input.GetKeyDown(KeyCode.N))
+        {
+            isMarkingActive = !isMarkingActive;
+            Debug.Log("Marking mode: " + (isMarkingActive ? "ON" : "OFF"));
+
+            // Aktifkan atau nonaktifkan notifikasi UI
+            if (markNotificationUI != null)
+                markNotificationUI.SetActive(isMarkingActive);
+        }
+
+        //
+
+        // Saat Marking Aktif dan Klik Kiri
+        if (isMapActive && isMarkingActive && Input.GetMouseButtonDown(0))
+        {
+            Vector2 localMousePos;
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(markerParent, Input.mousePosition, null, out localMousePos);
+            PlaceMarker(localMousePos);
+        }
+
 
     }
+
+
+    void PlaceMarker(Vector2 anchoredPos)
+    {
+        if (markerPrefab == null || markerParent == null) return;
+
+        GameObject newMarker = Instantiate(markerPrefab, markerParent);
+        RectTransform rt = newMarker.GetComponent<RectTransform>();
+        rt.anchoredPosition = anchoredPos;
+
+        // Tambahkan fungsi klik hapus
+        Button markerButton = newMarker.GetComponent<Button>();
+        if (markerButton != null)
+        {
+            markerButton.onClick.AddListener(() =>
+            {
+                spawnedMarkers.Remove(newMarker);
+                Destroy(newMarker);
+            });
+        }
+
+        spawnedMarkers.Add(newMarker);
+    }
+
+    public void ClearAllMarkers()
+    {
+        foreach (var marker in spawnedMarkers)
+        {
+            if (marker != null) Destroy(marker);
+        }
+        spawnedMarkers.Clear();
+    }
+
+
 
     void ToggleMap()
     {
@@ -219,6 +290,19 @@ public class FullMapController : MonoBehaviour
             blurFadeTimer = 0f;
             isFadingBlur = true;
         }
+
+
+
+        // Jika map ditutup, matikan mark mode dan UI-nya 
+        if (!isMapActive)
+        {
+            isMarkingActive = false;
+
+            if (markNotificationUI != null)
+                markNotificationUI.SetActive(false);
+        }
+
+
     }
 
 

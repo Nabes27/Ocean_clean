@@ -3159,6 +3159,10 @@ MonoBehaviour:
   storageBar: {fileID: 393135257}
   DekKapal: {fileID: 1330136660}
   maxStorageCapacity: 8
+  storageAText: {fileID: 0}
+  storageABar: {fileID: 0}
+  storageBText: {fileID: 0}
+  storageBBar: {fileID: 0}
 --- !u!4 &160634877
 Transform:
   m_ObjectHideFlags: 0
@@ -41711,7 +41715,7 @@ MonoBehaviour:
   turnSpeed: 50
   acceleration: 2
   deceleration: 0.1
-  maxTrashCapacity: 12
+  maxTrashCapacity: 6
   groundTag: Ground
   groundCheck: {fileID: 1640155378387425925}
   checkRadius: 0.5
