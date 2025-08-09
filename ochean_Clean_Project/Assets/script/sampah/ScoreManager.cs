@@ -1,6 +1,9 @@
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
-using UnityEngine.UI; // Tambahkan namespace untuk UI Image
+using System.Collections;
+using System.Collections.Generic;
+
 
 public class ScoreManager : MonoBehaviour
 {
@@ -26,6 +29,10 @@ public class ScoreManager : MonoBehaviour
 
     public int maxCapacityA = 15;
     public int maxCapacityB = 15;
+
+    [Header("Trigger GameObjects")]
+    public List<GameObject> objectsWhenOneFull; // Aktif jika salah satu full
+    public List<GameObject> objectsWhenBothFull; // Aktif jika dua-duanya full
 
 
     private void Awake()
@@ -104,8 +111,13 @@ public class ScoreManager : MonoBehaviour
 
         // Update UI
         UpdateStorageUI(id, current, max);
+
+        // Cek trigger storage
+        CheckStorageTriggers();
+
         return toTransfer;
     }
+
 
     public bool IsStorageFull(DualStorage.StorageID id)
     {
@@ -140,6 +152,29 @@ public class ScoreManager : MonoBehaviour
             Debug.Log($"Storage Loaded: A={storageACurrent}, B={storageBCurrent}");
         }
     }
+
+    private void CheckStorageTriggers()
+    {
+        bool isAFull = storageACurrent >= maxCapacityA;
+        bool isBFull = storageBCurrent >= maxCapacityB;
+
+        bool bothFull = isAFull && isBFull;
+        bool oneFullOnly = (isAFull ^ isBFull); // XOR: hanya satu yang penuh
+
+        // Aktifkan hanya jika salah satu penuh (bukan dua-duanya)
+        foreach (var obj in objectsWhenOneFull)
+        {
+            if (obj != null) obj.SetActive(oneFullOnly);
+        }
+
+        // Aktifkan hanya jika dua-duanya penuh
+        foreach (var obj in objectsWhenBothFull)
+        {
+            if (obj != null) obj.SetActive(bothFull);
+        }
+    }
+
+
 
 
 

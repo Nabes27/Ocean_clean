@@ -3165,6 +3165,8 @@ MonoBehaviour:
   storageBBar: {fileID: 0}
   maxCapacityA: 15
   maxCapacityB: 15
+  objectsWhenOneFull: []
+  objectsWhenBothFull: []
 --- !u!4 &160634877
 Transform:
   m_ObjectHideFlags: 0
@@ -6003,89 +6005,6 @@ Transform:
   - {fileID: 63575028}
   m_Father: {fileID: 52703969}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &291929404
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 291929405}
-  - component: {fileID: 291929407}
-  - component: {fileID: 291929406}
-  m_Layer: 0
-  m_Name: ArrowV2
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &291929405
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 291929404}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 1.66, z: 0}
-  m_LocalScale: {x: 0.49999997, y: 0.2949548, z: 0.15899001}
-  m_ConstrainProportionsScale: 1
-  m_Children: []
-  m_Father: {fileID: 1867408379}
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!23 &291929406
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 291929404}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 3035346242195016898, guid: ac5ba94793b3ba14787b349903b1ab1c, type: 3}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &291929407
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 291929404}
-  m_Mesh: {fileID: -1550514412580984892, guid: ac5ba94793b3ba14787b349903b1ab1c, type: 3}
 --- !u!1 &299197466
 GameObject:
   m_ObjectHideFlags: 0
@@ -23046,7 +22965,7 @@ MonoBehaviour:
   - {fileID: 1041853585}
   objectsToActivateAtEnd:
   - {fileID: 561959118}
-  - {fileID: 1867408378}
+  - {fileID: 6832258570482636192}
   numberOfObjectsToActivate: 2
   objectsToMoveDownAfterEnd: []
 --- !u!1 &1142887450
@@ -29034,12 +28953,18 @@ MonoBehaviour:
   - characterName: 'Andara:'
     emotion: Abiasa
     line: Akhirnya... walaupun kapalnya udah tua, masih bisa nyala juga ya.
+  - characterName: 'Andara:'
+    emotion: Asenyum
+    line: Jadi ke inget dulu kita sering macing make kapal ini
+  - characterName: 'Andara:'
+    emotion: Asenyum
+    line: Mankasih loh udah Ngerawat
   - characterName: 'Graha:'
     emotion: Gsenyum
     line: Hehe, siapa dulu yang ngerawat! Tapi inget kan cara ngendarainnya?
   - characterName: 'Graha:'
     emotion: GBiasa
-    line: Coba kamu dorong handle ke depan buat jalan.
+    line: Sebelum bersih bersih smapah kita cek persiapan dulu
   objectsToDisableAtEnd:
   - {fileID: 1527496972}
   objectsToActivateAtEnd:
@@ -35792,7 +35717,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1601766128}
-  - {fileID: 1867408379}
+  - {fileID: 704704781275569411}
   m_Father: {fileID: 1916972152}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1709244653
@@ -39522,58 +39447,6 @@ Transform:
   - {fileID: 3300281755877823992}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1867408378
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1867408379}
-  - component: {fileID: 1867408380}
-  m_Layer: 9
-  m_Name: Arrow Tutorial2
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &1867408379
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1867408378}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.32, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 291929405}
-  m_Father: {fileID: 1708328523}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1867408380
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1867408378}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8ebf0b6f005d4049b072d385be6696d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  checkpointLayer:
-    serializedVersion: 2
-    m_Bits: 65536
-  maxDetectDistance: 300
-  maxCheckpoints: 1
-  objectToDisableWhenDone: {fileID: 1867408378}
-  objectToEnableWhenDone: {fileID: 1244656751}
 --- !u!1 &1871568521
 GameObject:
   m_ObjectHideFlags: 0
@@ -46569,6 +46442,48 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1416392951}
   m_LocalEulerAnglesHint: {x: 0, y: -180, z: 90}
+--- !u!23 &61536462602339432
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2003986911772248957}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 3035346242195016898, guid: ac5ba94793b3ba14787b349903b1ab1c, type: 3}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!33 &63221392735201508
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -46674,6 +46589,25 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &286179096359920557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6832258570482636192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8ebf0b6f005d4049b072d385be6696d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  checkpointLayer:
+    serializedVersion: 2
+    m_Bits: 65536
+  maxDetectDistance: 300
+  maxCheckpoints: 1
+  objectToDisableWhenDone: {fileID: 6832258570482636192}
+  objectToEnableWhenDone: {fileID: 1244656751}
 --- !u!4 &327149445049517118
 Transform:
   m_ObjectHideFlags: 0
@@ -47084,6 +47018,22 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!4 &704704781275569411
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6832258570482636192}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.32, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 6251071866758686008}
+  m_Father: {fileID: 1708328523}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &726846729384472003
 AudioSource:
   m_ObjectHideFlags: 0
@@ -47886,6 +47836,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4344947450926557606}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2003986911772248957
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6251071866758686008}
+  - component: {fileID: 4539070919625149770}
+  - component: {fileID: 61536462602339432}
+  m_Layer: 0
+  m_Name: ArrowV2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!114 &2090561819342886107
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -49276,6 +49244,14 @@ PlayableDirector:
     value: {fileID: 8526205285964142413}
   m_ExposedReferences:
     m_References: []
+--- !u!33 &4539070919625149770
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2003986911772248957}
+  m_Mesh: {fileID: -1550514412580984892, guid: ac5ba94793b3ba14787b349903b1ab1c, type: 3}
 --- !u!33 &4652982609830714638
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -50131,6 +50107,21 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!4 &6251071866758686008
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2003986911772248957}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 1.66, z: 0}
+  m_LocalScale: {x: 0.49999997, y: 0.2949548, z: 0.15899001}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 704704781275569411}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!4 &6298073860872254525
 Transform:
   m_ObjectHideFlags: 0
@@ -50385,6 +50376,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &6832258570482636192
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 704704781275569411}
+  - component: {fileID: 286179096359920557}
+  m_Layer: 9
+  m_Name: Arrow Tutorial2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
 --- !u!33 &6855415240080578757
 MeshFilter:
   m_ObjectHideFlags: 0

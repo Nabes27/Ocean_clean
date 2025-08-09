@@ -29,4 +29,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Day1/Day0 start.unity
     guid: 3614c20a0b8bd184e81493ab8ad28076
+  - enabled: 1
+    path: Assets/Scenes/Day1/Day0 start Bagian 2.unity
+    guid: d4308e128adb50a44945336e5a98dc41
+  - enabled: 1
+    path: Assets/Scenes/Day x ending.unity
+    guid: daff3f40806f19b49a608be151c19327
+  - enabled: 1
+    path: Assets/Scenes/Cut Scane.unity
+    guid: fbfadc41c08a55b41a26475d75f65a8c
   m_configObjects: {}
