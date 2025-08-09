@@ -15,7 +15,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Fix Main Game.unity
     guid: 7531582408de0344ca774e6ef26ae428
   - enabled: 1
-    path: Assets/Scenes/Day1/Day1 cut scane.unity
+    path: Assets/Scenes/Day1/Day1 tutorial.unity
     guid: c269e862605af224cbad02384dcf0984
   - enabled: 1
     path: Assets/Scenes/Day1/Day1 Selsai.unity
@@ -23,4 +23,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Day1/Day1 - 2.unity
     guid: b78553b1a47e13d40aad657941a076d7
+  - enabled: 1
+    path: Assets/Scenes/Day1/Day0 intro.unity
+    guid: 13912b9f840594a45a4e67567259ef06
+  - enabled: 1
+    path: Assets/Scenes/Day1/Day0 start.unity
+    guid: 3614c20a0b8bd184e81493ab8ad28076
   m_configObjects: {}

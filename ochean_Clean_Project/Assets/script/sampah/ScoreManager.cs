@@ -116,4 +116,31 @@ public class ScoreManager : MonoBehaviour
     }
 
 
+
+    // ======== SAVE & LOAD STORAGE DATA ========
+    public void SaveStorageData()
+    {
+        PlayerPrefs.SetInt("StorageA_Current", storageACurrent);
+        PlayerPrefs.SetInt("StorageB_Current", storageBCurrent);
+        PlayerPrefs.Save();
+        Debug.Log($"Storage Saved: A={storageACurrent}, B={storageBCurrent}");
+    }
+
+    public void LoadStorageData()
+    {
+        if (PlayerPrefs.HasKey("StorageA_Current") && PlayerPrefs.HasKey("StorageB_Current"))
+        {
+            storageACurrent = PlayerPrefs.GetInt("StorageA_Current");
+            storageBCurrent = PlayerPrefs.GetInt("StorageB_Current");
+
+            // Update UI setelah load
+            UpdateStorageUI(DualStorage.StorageID.A, storageACurrent, maxCapacityA);
+            UpdateStorageUI(DualStorage.StorageID.B, storageBCurrent, maxCapacityB);
+
+            Debug.Log($"Storage Loaded: A={storageACurrent}, B={storageBCurrent}");
+        }
+    }
+
+
+
 }

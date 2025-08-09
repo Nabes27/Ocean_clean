@@ -2575,6 +2575,12 @@ MonoBehaviour:
   storageBar: {fileID: 393135257}
   DekKapal: {fileID: 1330136660}
   maxStorageCapacity: 8
+  storageAText: {fileID: 0}
+  storageABar: {fileID: 0}
+  storageBText: {fileID: 0}
+  storageBBar: {fileID: 0}
+  maxCapacityA: 15
+  maxCapacityB: 15
 --- !u!4 &160634877
 Transform:
   m_ObjectHideFlags: 0
@@ -17031,7 +17037,7 @@ Transform:
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
   m_LocalRotation: {x: -0.053052377, y: 0.8962445, z: -0.11161454, w: -0.42599696}
-  m_LocalPosition: {x: -99.48372, y: 3.9896843, z: 106.926994}
+  m_LocalPosition: {x: -99.1, y: 3.8, z: 105.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -24518,12 +24524,12 @@ MonoBehaviour:
   - characterName: 'Bapak:'
     emotions:
     - emotionName: A
-      sprite: {fileID: 21300000, guid: ede87dfe291b7e54dae7bd4955d0bc00, type: 3}
+      sprite: {fileID: 21300000, guid: ce15b2446223beb4884e500f33a351d9, type: 3}
     uiPosition: {x: -450, y: 75.8}
   - characterName: 'Mamak:'
     emotions:
     - emotionName: A
-      sprite: {fileID: 21300000, guid: ede87dfe291b7e54dae7bd4955d0bc00, type: 3}
+      sprite: {fileID: 21300000, guid: 31029652d31dee8448a64ea2ce989bc9, type: 3}
     uiPosition: {x: -450, y: 75.8}
   storyLines:
   - characterName: 'Bapak:'
@@ -28306,6 +28312,7 @@ GameObject:
   - component: {fileID: 1601239990}
   - component: {fileID: 1601239989}
   - component: {fileID: 1601239988}
+  - component: {fileID: 1601239991}
   m_Layer: 5
   m_Name: Canvas_semua
   m_TagString: Untagged
@@ -28401,6 +28408,42 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!328 &1601239991
+VideoPlayer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1601239986}
+  m_Enabled: 1
+  m_VideoClip: {fileID: 32900000, guid: 6407b034422a7654e90ba59439a9a036, type: 3}
+  m_TargetCameraAlpha: 1
+  m_TargetCamera3DLayout: 0
+  m_TargetCamera: {fileID: 0}
+  m_TargetTexture: {fileID: 0}
+  m_TimeReference: 0
+  m_TargetMaterialRenderer: {fileID: 0}
+  m_TargetMaterialProperty: <noninit>
+  m_RenderMode: 2
+  m_AspectRatio: 2
+  m_DataSource: 0
+  m_TimeUpdateMode: 2
+  m_PlaybackSpeed: 1
+  m_AudioOutputMode: 2
+  m_TargetAudioSources:
+  - {fileID: 0}
+  m_DirectAudioVolumes:
+  - 1
+  m_Url: 
+  m_EnabledAudioTracks: 01
+  m_DirectAudioMutes: 00
+  m_ControlledAudioTrackCount: 1
+  m_PlayOnAwake: 1
+  m_SkipOnDrop: 1
+  m_Looping: 0
+  m_WaitForFirstFrame: 1
+  m_FrameReadyEventEnabled: 0
+  m_VideoShaders: []
 --- !u!1 &1601351867
 GameObject:
   m_ObjectHideFlags: 0
@@ -30921,6 +30964,9 @@ MonoBehaviour:
   playerTransform: {fileID: 319415974}
   mapScale: 0.51
   orbitalCamera: {fileID: 0}
+  markerPrefab: {fileID: 0}
+  markerParent: {fileID: 0}
+  markNotificationUI: {fileID: 0}
   mapUIRect: {fileID: 230667955}
   hiddenPosY: -700
   transitionSpeed: 1600

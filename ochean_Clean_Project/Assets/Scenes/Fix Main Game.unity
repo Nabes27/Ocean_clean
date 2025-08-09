@@ -9066,7 +9066,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Di Sebelah kiri sini adalah Bar Dek A dan Dek B '
+  m_text: Di Sebelah kiri sini adalah Bar Dek A dan Dek B Mereka Memiliki Progeres
+    yang berbeda masing masing
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -13414,7 +13415,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
+    rgba: 4294967295
   m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -19793,7 +19794,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 1.02e-43, y: 1.26e-43, z: 1.484e-41, w: -1.4903753e-36}
+  m_BoundingSphereOverride: {x: 0, y: NaN, z: 0, w: 1e-45}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -26088,6 +26089,82 @@ Transform:
   - {fileID: 227361313}
   m_Father: {fileID: 1301209088}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!1001 &926853211
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3403567096503716583, guid: 0ddfbf265d4fd484e8aa782b0ca6a82c, type: 3}
+      propertyPath: m_Name
+      value: Save game
+      objectReference: {fileID: 0}
+    - target: {fileID: 4974193295781527091, guid: 0ddfbf265d4fd484e8aa782b0ca6a82c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -148.42578
+      objectReference: {fileID: 0}
+    - target: {fileID: 4974193295781527091, guid: 0ddfbf265d4fd484e8aa782b0ca6a82c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -10.762066
+      objectReference: {fileID: 0}
+    - target: {fileID: 4974193295781527091, guid: 0ddfbf265d4fd484e8aa782b0ca6a82c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 81.42767
+      objectReference: {fileID: 0}
+    - target: {fileID: 4974193295781527091, guid: 0ddfbf265d4fd484e8aa782b0ca6a82c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4974193295781527091, guid: 0ddfbf265d4fd484e8aa782b0ca6a82c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4974193295781527091, guid: 0ddfbf265d4fd484e8aa782b0ca6a82c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4974193295781527091, guid: 0ddfbf265d4fd484e8aa782b0ca6a82c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4974193295781527091, guid: 0ddfbf265d4fd484e8aa782b0ca6a82c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4974193295781527091, guid: 0ddfbf265d4fd484e8aa782b0ca6a82c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4974193295781527091, guid: 0ddfbf265d4fd484e8aa782b0ca6a82c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5176303819142663690, guid: 0ddfbf265d4fd484e8aa782b0ca6a82c, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1916972152}
+    - target: {fileID: 5176303819142663690, guid: 0ddfbf265d4fd484e8aa782b0ca6a82c, type: 3}
+      propertyPath: customY
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0ddfbf265d4fd484e8aa782b0ca6a82c, type: 3}
+--- !u!114 &926853212 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5176303819142663690, guid: 0ddfbf265d4fd484e8aa782b0ca6a82c, type: 3}
+  m_PrefabInstance: {fileID: 926853211}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be269a665bb7cf94681c396bdcb0f56d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &928609719
 GameObject:
   m_ObjectHideFlags: 0
@@ -28506,7 +28583,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1000301978}
   m_Layer: 5
-  m_Name: Y and N
+  m_Name: menu Y and N
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30326,7 +30403,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
+    rgba: 4294967295
   m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -30976,6 +31053,18 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 1000301977}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 926853212}
+        m_TargetAssemblyTypeName: SaveLoadManager, Assembly-CSharp
+        m_MethodName: SaveGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -41211,7 +41300,7 @@ MonoBehaviour:
   - characterName: 'Penduduk Desa:'
     emotions:
     - emotionName: a
-      sprite: {fileID: 21300000, guid: ede87dfe291b7e54dae7bd4955d0bc00, type: 3}
+      sprite: {fileID: 21300000, guid: 8de811a1a1b69444ba6efd743fb55fc1, type: 3}
     uiPosition: {x: -450, y: 75.8}
   storyLines:
   - characterName: 'Penduduk Desa:'
@@ -53643,7 +53732,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.3301887, g: 0.3301887, b: 0.3301887, a: 1}
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -53673,7 +53762,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -59986,7 +60075,7 @@ Transform:
   m_GameObject: {fileID: 1916972151}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -36.3, y: 0.21999997, z: 116.2}
+  m_LocalPosition: {x: -36.3, y: 0, z: 116.2}
   m_LocalScale: {x: 0.85, y: 0.85, z: 0.85}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -72345,3 +72434,4 @@ SceneRoots:
   - {fileID: 666795724}
   - {fileID: 673130246}
   - {fileID: 590069369}
+  - {fileID: 926853211}
